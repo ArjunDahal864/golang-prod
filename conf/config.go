@@ -3,7 +3,7 @@ package conf
 // Basic Defination of Config
 type Config struct {
 	Database Database `toml:"database"`
-	Log      Logger   `toml:"loger"`
+	Log      Logger   `toml:"logger"`
 	Server   Server   `toml:"server"`
 }
 
