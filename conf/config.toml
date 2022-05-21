@@ -1,0 +1,11 @@
+[database]
+    host="host"
+    port="5432"
+    user="user"
+    password="password"
+    name="name"
+    driver="driver"
+[logging]
+    level="TRACE"
+[server]
+    listen="0.0.0.0:8080"
