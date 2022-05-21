@@ -2,12 +2,12 @@ package conf
 
 // Basic Defination of Config
 type Config struct {
-	Database Database `toml:"database"`
-	Log      Logger   `toml:"logger"`
-	Server   Server   `toml:"server"`
+	Database SQLDatabase `toml:"database"`
+	Logger   Logger      `toml:"logger"`
+	Server   Server      `toml:"server"`
 }
 
-type Database struct {
+type SQLDatabase struct {
 	User     string `toml:"user"`
 	Password string `toml:"password"`
 	Host     string `toml:"host"`

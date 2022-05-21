@@ -2,7 +2,10 @@ module prod
 
 go 1.18
 
-require github.com/sirupsen/logrus v1.8.1
+require (
+	github.com/lib/pq v1.10.6
+	github.com/sirupsen/logrus v1.8.1
+)
 
 require (
 	github.com/fsnotify/fsnotify v1.5.1 // indirect
@@ -23,6 +26,7 @@ require (
 )
 
 require (
+	github.com/DATA-DOG/go-sqlmock v1.5.0
 	github.com/spf13/viper v1.11.0
 	golang.org/x/sys v0.0.0-20220412211240-33da011f77ad // indirect
 )

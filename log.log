@@ -1,7 +1,7 @@
 {
-  "file": "/home/arjun/HDD/golang-prod/main.go:62",
+  "file": "/home/arjun/HDD/golang-prod/main.go:75",
   "func": "main.main",
   "level": "info",
-  "msg": "\u0026{{user password host 5432 name driver} {} {0.0.0.0:8080}}",
-  "time": "2022-05-21 14:48:53"
+  "msg": "connected to database",
+  "time": "2022-05-21 21:53:19"
 }

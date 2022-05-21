@@ -5,6 +5,7 @@ import (
 	"os"
 	"path/filepath"
 	"prod/conf"
+	"prod/db"
 
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
@@ -39,7 +40,7 @@ func init() {
 	}
 
 	// set logger
-	level, err := logrus.ParseLevel(config.Log.Level)
+	level, err := logrus.ParseLevel(config.Logger.Level)
 	if err != nil {
 		level = logrus.InfoLevel
 	}
@@ -59,5 +60,11 @@ func init() {
 }
 
 func main() {
-	logrus.Info(config)
+	mock := db.MockDB{}
+	mockDB := mock.Connect()
+	if err := mockDB.Ping(); err != nil {
+		panic(err)
+	}
+	defer mockDB.Close()
+	logrus.Info("connected to database")
 }
