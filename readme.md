@@ -19,3 +19,4 @@ I don't know, where i will reach.... or complete this project but i will try to 
 - [ ] CD
 - [ ] Data Science (not sure but planning to create some sort of recommendation system.)
 - [x] Bash Scipting
+
