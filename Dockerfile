@@ -4,12 +4,12 @@ WORKDIR /app
 
 COPY go.mod ./
 COPY go.sum ./
-RUN go mod download github.com/sagikazarmark/crypt
 RUN go mod download
 
-COPY . ./
+COPY *.go ./
 
-RUN go build -o /application
+RUN go build -o /server
 
-CMD [ "/application" ]
+EXPOSE 8080
 
+CMD [ "/server" ]

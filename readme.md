@@ -9,8 +9,8 @@ I don't know, where i will reach.... or complete this project but i will try to 
 - [ ] RBAC with Google signin or use oAuth
 - [ ] GRPC
 - [ ] REST
-- [x] Docker
-- [ ] Swagger
+- [x] Docker (needs some refactoring to work properly)
+- [x] Swagger
 - [ ] Mocking
 - [ ] Unit Test
 - [ ] Integration Test
@@ -19,4 +19,3 @@ I don't know, where i will reach.... or complete this project but i will try to 
 - [ ] CD
 - [ ] Data Science (not sure but planning to create some sort of recommendation system.)
 - [x] Bash Scipting
-
