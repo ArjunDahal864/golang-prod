@@ -1,42 +1,43 @@
 package db
 
 import (
-	"database/sql"
 	"fmt"
-	"prod/conf"
+	"golang-prod/conf"
 
-	"github.com/DATA-DOG/go-sqlmock"
-	_ "github.com/lib/pq"
+	"gorm.io/driver/postgres"
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
 )
 
 type Database interface {
-	PostgresDB() *sql.DB
-	// add more database methods if needed
-	MockDB() *sql.DB
+	ConnectToSqlDatabase() *gorm.DB
+	ConnectToPostgresDatabase() *gorm.DB
 }
 
-type PostgresDatabase struct {
-	DB conf.SQLDatabase
+func New(config conf.Config) *Connection {
+	return &Connection{
+		config: config,
+	}
 }
 
-type MockDB struct{}
+type Connection struct {
+	config conf.Config
+}
 
-func (s *PostgresDatabase) Connect() *sql.DB {
-	db, err := sql.Open(s.DB.Driver, fmt.Sprintf("postgresql://%s:%s@%s:%s/%s?sslmode=disable", s.DB.User, s.DB.Password, s.DB.Host, s.DB.Port, s.DB.Name))
+func (conf Connection) ConnectToSQliteDatabase() *gorm.DB {
+	db, err := gorm.Open(sqlite.Open("sql.db"), &gorm.Config{})
 	if err != nil {
 		panic(err)
 	}
 	return db
 }
 
-func (s *MockDB) Connect() *sql.DB {
-	db, _, err := sqlmock.New()
+func (conf Connection) ConnectToPostgresDatabase() *gorm.DB {
+	database := conf.config.Database
+	dburl := fmt.Sprintf("postgresql://%s:%s@%s:%s/%s?sslmode=disable", database.User, database.Password, database.Host, database.Port, database.Name)
+	db, err := gorm.Open(postgres.Open(dburl), &gorm.Config{})
 	if err != nil {
 		panic(err)
 	}
 	return db
-}
-
-func Postgres(d Database) *sql.DB {
-	return d.PostgresDB()
 }

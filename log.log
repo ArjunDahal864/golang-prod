@@ -1,7 +1,14 @@
 {
-  "file": "/home/arjun/HDD/golang-prod/main.go:75",
+  "file": "/home/azminds/Desktop/golang-prod/main.go:65",
   "func": "main.main",
   "level": "info",
   "msg": "connected to database",
-  "time": "2022-05-21 21:53:19"
+  "time": "2022-06-25 08:55:34"
+}
+{
+  "file": "/home/azminds/Desktop/golang-prod/main.go:65",
+  "func": "main.main",
+  "level": "info",
+  "msg": "connected to database",
+  "time": "2022-06-25 08:56:58"
 }

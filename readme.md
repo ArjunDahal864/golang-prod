@@ -5,11 +5,11 @@ build a e-commerce system using microservice architecture. try to implement all 
 I don't know, where i will reach.... or complete this project but i will try to give some time everyday and see what i will get or do. wish me luck......
 
 - [ ] Redis Caching
-- [ ] Multiple Database
+- [x] Multiple Database
 - [ ] RBAC with Google signin or use oAuth
 - [ ] GRPC
 - [ ] REST
-- [ ] Docker
+- [x] Docker
 - [ ] Swagger
 - [ ] Mocking
 - [ ] Unit Test
@@ -18,4 +18,4 @@ I don't know, where i will reach.... or complete this project but i will try to 
 - [ ] CI
 - [ ] CD
 - [ ] Data Science (not sure but planning to create some sort of recommendation system.)
-- [ ] Bash Scipting
+- [x] Bash Scipting

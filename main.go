@@ -2,10 +2,9 @@ package main
 
 import (
 	"flag"
+	"golang-prod/conf"
+	"golang-prod/db"
 	"os"
-	"path/filepath"
-	"prod/conf"
-	"prod/db"
 
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
@@ -15,30 +14,31 @@ var (
 	config *conf.Config
 )
 
+func loadConfig(path string) {
+	viper.AddConfigPath(path)
+	viper.SetConfigName(".env.example")
+	viper.SetConfigType("env")
+
+	viper.AutomaticEnv()
+
+	err := viper.ReadInConfig()
+	if err != nil {
+		panic(err)
+	}
+
+	err = viper.Unmarshal(&config)
+	if err != nil {
+		panic(err)
+	}
+}
+
 func init() {
 
 	writeToFile := flag.Bool("f", false, "write logs to file")
 	flag.Parse()
 
-	// Set the config file name
-	fileName := flag.String("c", "config", "config file name")
-
-	absPath, err := filepath.Abs("./conf")
-	if err != nil {
-		panic("config file not found in " + filepath.Join(absPath))
-	}
-
-	viper.SetConfigName(*fileName)
-	viper.AddConfigPath(absPath)
-
-	if err = viper.ReadInConfig(); err != nil {
-		logrus.Fatalf("could not read config file: %v", err)
-	}
-	err = viper.Unmarshal(&config)
-	if err != nil {
-		logrus.Fatalf("config file invalid: %v", err)
-	}
-
+	loadConfig(".")
+	
 	// set logger
 	level, err := logrus.ParseLevel(config.Logger.Level)
 	if err != nil {
@@ -60,11 +60,7 @@ func init() {
 }
 
 func main() {
-	mock := db.MockDB{}
-	mockDB := mock.Connect()
-	if err := mockDB.Ping(); err != nil {
-		panic(err)
-	}
-	defer mockDB.Close()
+	dbConnection := db.New(*config)
+	dbConnection.ConnectToSQliteDatabase()
 	logrus.Info("connected to database")
 }

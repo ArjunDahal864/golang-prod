@@ -2,24 +2,23 @@ package conf
 
 // Basic Defination of Config
 type Config struct {
-	Database SQLDatabase `toml:"database"`
-	Logger   Logger      `toml:"logger"`
-	Server   Server      `toml:"server"`
+	Database SQLDatabase  
+	Logger   Logger      
+	Server   Server
 }
 
 type SQLDatabase struct {
-	User     string `toml:"user"`
-	Password string `toml:"password"`
-	Host     string `toml:"host"`
-	Port     string `toml:"port"`
-	Name     string `toml:"name"`
-	Driver   string `toml:"driver"`
+	User     string `env:"POSTGRES_USER"`
+	Password string `env:"POSTGRES_PASSWORD"`
+	Host     string `env:"DB_HOST"`
+	Port     string `env:"DATABASE_PORT"`
+	Name     string `env:"POSTGRES_DB"`
 }
 
 type Server struct {
-	Listen string `toml:"listen"`
+	Listen string `env:"SERVER_EXPOSE_PORT"`
 }
 
 type Logger struct {
-	Level string `toml:"level"`
+	Level string `env:"LOG_LEVEL"`
 }

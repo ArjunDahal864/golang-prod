@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  db:
+    image: "postgres:${POSTGRES_VERSION}"
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+    ports:
+        - 5432:${DATABASE_PORT}
+    volumes:
+        - db:/var/lib/postgressql/data
+    
+  server:
+    build: .
+    env_file:
+      - "${ENV_FILE_PATH}"
+    ports:
+      - "${SERVER_EXPOSE_PORT}:${SERVER_EXPOSE_PORT}"
+    depends_on:
+      - db
+            
+
+volumes:
+  db:
+    driver: local
+    
